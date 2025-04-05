@@ -1,0 +1,35 @@
+sequenceDiagram
+    participant browser
+    participant server
+
+    Note over browser: User writes a note and submits the form
+
+    browser->>server: POST https://studies.cs.helsinki.fi/exampleapp/new_note
+    activate server
+    Note right of browser: Form data is sent, but borwser reloads the page generating the load of the whole content.
+    server-->>browser: HTTP 302 Redirect to /exampleapp/notes
+    deactivate server
+
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/notes
+    activate server
+    server-->>browser: HTML page
+    deactivate server
+
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/main.css
+    activate server
+    server-->>browser: CSS file
+    deactivate server
+
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/main.js
+    activate server
+    server-->>browser: JavaScript file
+    deactivate server
+
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/data.json
+    activate server
+    server-->>browser: JSON notes
+    deactivate server
+
+    Note right of browser: JavaScript runs again and renders notes using DOM API
+
+Mermaid link: https://mermaid.live/edit#pako:eNq9VNtum0AQ_ZXVPjuYmzHmIVKVpDc1F9XpS2WpWrMDbAO7dHex40T-985CSdomkeqHhgfEnmHmnDkwc09zxYFm1MCPDmQOp4KVmjUrSfBqmbYiFy2Tlqy12hrQTwMIbhw-RC6UBaIQGBMy8gXvZKuFBUMYke4FJjkx3boR1hBbASmUbsYKv_KOjo-Hyhm5ulxek8ra1mTTqbEdF2C83HgV1EbIG-EVYgq3rGlrYG07lbD95liGciy3YsOQc9T5oFKLsrJEFY9K36IMwpllRBh8X9oJWXfYutIuTjTUivFBcctKICVI0MwKWfaYi7p67nlbqRpIrqTFMt7AOig4ws4eGN9fX1-RyA_JZ-BCQ26JVeSPZlCpGdI5POnlJcfenR1k2CPHs249q_v8U-_Bf5bWMCExfKC6k-WSFKJ-FXHfD9T2kW3YMteita8h0f3MKFHJA0UuLy_Iv_x6LwzSb03qTuLYl2hVP_UaJAdthuKkM252Ti_PyZurDytJJ7TUgtPM6g4mtAGNFuOR3ju2FcXBamBFM3zkTN-s6EruMQfX0FelmjFNq66saFaw2uCpa9GDca39hZ5xYZV-AFln1XIn87GQm2fA8D21u9YtyVIYi3w41YUoHd7pGuHxc7iwVwpbdWsvV83UCF7hoqw2i2SahEnKwgiSecRmUcTzdbBIizAOCj73g5DR_R6V9-acqE5amgV-tOh7c0S3eI5n3iwI4zCN48XMj6L5hO5olqbeLJmH80W0CMMk9gOsc9e74Xtp4sdJFMd-HKRhHMUTCn3H58PO71f__ie1Tw34

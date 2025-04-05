@@ -1,0 +1,17 @@
+sequenceDiagram
+    participant browser
+    participant server
+
+    Note over browser: User writes a note and submits the form
+
+    Note right of browser: JavaScript takes the form submission, uses e.preventDefault() to block realoading page.
+
+    browser->>server: POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+    activate server
+    Note right of browser: Sends JSON payload:\n{ content: "New note", date: "..." }\nwith Content-Type: application/json
+    server-->>browser: HTTP 201 Created
+    deactivate server
+
+    Note right of browser: JavaScript updates the note list in the UI\nwithout reloading the page
+
+Mermaid link: https://mermaid.live/edit#pako:eNqNU1tr2zAU_itCTxukvia244e-tIOtsLaQ9GUYimId21psyZPkpFnIf--RnbRshTE_GPSd2_edy5GWigPNqYFfA8gSbgWrNesKSfDrmbaiFD2Tlmy02hvQHw0I7hw-We6VBaIQuATk5An_ZK-FBUMYkc6BSU7MsOmENcQ2QCqluz8yaFE3lqjqPcsd27FVqUVviWVbeI-bEhkjlJyRwaAFvF7DDqS9hYoNrf30mVhFNq0qt0QDaxXjQtYoogbvUvVc5-r6etKTk8eH1Zo01vYm931jBy7AeKXxGmiNkFvhVcKHF9b1LbC-9yXsn522Z9OzKSUrrdgxFHPp0D_UrUByQ-5WD_dI6-AY5kUhj6RU0qKQnBT0HvZj8wo6IxzTOszzvIKSE7ruhW3IzeR9tT70aEZWrSiZxcb4P406C53IXKHQt-Jf1-tHEgUhucHuWOCTI4cPAv53QEPvCE4jGufdCmOJkCPw9O1MVw0Wx3GZhjO5idAZrbXgNLd6gBntQHfMPenRVS8o-nXYA6eeM70taCFPGIOr-EOp7hKm1VA3NK9Ya_A18Tmv9l_oFy6s0m8gG6xaHWR5SeToAZqP1GJTkUaNUrAeDqYStcMH3SJ8WRRn9mpUN2y8UnW-EbzBY2l2y8RPoiRjUQxJGrNFHPNyEy6zKpqHFU-DMGL0dELmuAmgb9QgLc3TdDlKc3VeaB7N516SxWEQpot5FGVBPKMHmieZF6RJkuE7ieeLRYppfo_NCLwsDOJFHIXLRbAMo3k2ozAK_j6d_Xj9p1eRPVvK

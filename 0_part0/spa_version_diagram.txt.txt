@@ -1,0 +1,38 @@
+sequenceDiagram
+    participant browser
+    participant server
+
+    Note over browser: User navigates to https://studies.cs.helsinki.fi/exampleapp/spa
+
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/spa
+    activate server
+    server-->>browser: HTML page
+    deactivate server
+
+    Note right of browser: The browser loads the css file found on the html file.
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/main.css
+    activate server
+    server-->>browser: CSS file
+    deactivate server
+
+    Note right of browser: The browser parses the HTML and starts loading external JavaScript
+
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/spa.js
+    activate server
+    server-->>browser: JavaScript file
+    deactivate server
+
+    Note right of browser: JavaScript is executed in the browser\n(fetches notes and renders UI)
+
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/data.json
+    activate server
+    server-->>browser: JSON data of existing notes
+    deactivate server
+
+    Note right of browser: Notes are rendered using DOM API (using javascript dinamically, not from server-rendered HTML)
+
+    Note over browser: The page does not reload or request other HTML pages
+
+    Note over browser: All interaction and rendering is handled on the client-side with JavaScript
+
+Mermaid link: https://mermaid.live/edit#pako:eNqtVdFO2zAU_RXLTyCVtEnatM0DEgK0MQ2YVHiZ-mLsm8SQ2JntlDLUf991Qlo2JKQO-lDZx_HxPefeaz9TrgXQlFr41YDicCZZbli1VAR_NTNOclkz5cid0Y8WzNsFBFce71autAOiEeg3pOQW_4liK5kzB5Y4TQrnapsOh9Y1QoINuA0KKK1UDzLI5BDWrKpLYHU9tDXrmV_4jo6PuxNT8uX8Zl8qT8S4kysMZRu5B7vxEbJv4_56c_kdlebQfSHgzcZXko3MC0d0tpN9U0A_IaVmApUjwq0lmSyBZLpRgmjVooWryhYOPkdrxaTCZbuf4NPFog3i43qxPix0glsXGUq1DovGtlZIlRNYOzCKleQbW7EFN7J2n5jp4H5P7bsoPmDBKxJpUSHwxoEgskty30FLdZCB4wUapLTvCO-OASXAWHJ7cfhZNgjmvA9a7enE4vqK-L1eGqyldT5dbaT_58pVJ9LAi0h0pLGe8-z6kpz8uCAH3fQe3bOde1ghrJKcleXTwB9NMqOrPtgtiy-tw3cuHl-Rvn-J0J3XGIAvP6INjvC-sxgoZsbsWt2-Q3dSlphKrFovHxt3lzYfPSa8QKSEbVPzUoJyR1YKII_SFX9VOh3Q3EhBU2caGNAKDPYsTumzP39JkaCCJU1xKJh5WNKl2uAevHF_al3124xu8oKmGSstzpoa09bf4P-g50I6bbYga5xePCneE3lbAJefqXuq_XuQY97xPK5VJnOPN6ZEuK8-vxzkKKq5C7iuhiiywPYuVvNkmETJjEUxJNOYTeJY8LtwPsuicZiJ6SiMGN1sMPLWuFO8BB1Nkyhupflz1jSNxuMgmcXhKJxOxlE0G-HqE341C0bTJJnhPInHk8kUaX63ZoyCWTiKJ3EUziejeRiNkwGFVvBl97q1j9zmDyTjYvQ
