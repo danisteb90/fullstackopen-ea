@@ -11,34 +11,31 @@ const StatisticsLine = ({ text, value }) => {
 
 const Statistics = ({ good, neutral, bad }) => {
   const total = good + neutral + bad;
+  if (total === 0) return <p>No feedback given</p>;
   const average = (good - bad) / total;
   const positiveFeedback = (good / total) * 100;
 
   return (
     <>
-      {total === 0 ? (
-        <p>No feedback given</p>
-      ) : (
-        <div>
-          <h2>Statics</h2>
-          <table>
-            <tbody>
-              <StatisticsLine text="Good" value={good} />
-              <StatisticsLine text="Neutral" value={neutral} />
-              <StatisticsLine text="Bad" value={bad} />
-              <StatisticsLine text="Total" value={total} />
-              <StatisticsLine
-                text="Average"
-                value={total === 0 ? 0 : average.toFixed(2)}
-              />
-              <StatisticsLine
-                text="Positive Feedback"
-                value={total === 0 ? 0 : positiveFeedback.toFixed(2)}
-              />
-            </tbody>
-          </table>
-        </div>
-      )}
+      <div>
+        <h2>Statistics</h2>
+        <table>
+          <tbody>
+            <StatisticsLine text="Good" value={good} />
+            <StatisticsLine text="Neutral" value={neutral} />
+            <StatisticsLine text="Bad" value={bad} />
+            <StatisticsLine text="Total" value={total} />
+            <StatisticsLine
+              text="Average"
+              value={`${(average * 100).toFixed(2)} %`}
+            />
+            <StatisticsLine
+              text="Positive Feedback"
+              value={`${positiveFeedback.toFixed(2)} %`}
+            />
+          </tbody>
+        </table>
+      </div>
     </>
   );
 };
@@ -60,9 +57,7 @@ const Anecdotes = ({ anecdotes, selected, handleRandom, handleVote }) => {
 
 const FavoriteAnecdote = ({ anecdotes, votes }) => {
   const maxVote = Math.max(...votes);
-  console.log(maxVote);
   const maxVoteAnecdoteIndex = votes.indexOf(maxVote);
-  console.log(maxVoteAnecdoteIndex);
   return (
     <>
       <h2>Favorite Anecdote</h2>
@@ -90,7 +85,6 @@ function App() {
   const [bad, setBad] = useState(0);
   const [selected, setSelected] = useState(0);
   const [votes, setVotes] = useState([0, 0, 0, 0, 0, 0, 0, 0]);
-  console.log(votes);
 
   const handleGood = () => {
     setGood(good + 1);
